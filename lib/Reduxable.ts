@@ -8,11 +8,9 @@ export interface ReduxableState<T = any> {
 
 export type InternalReducer<S = any> = (state: S, action: Action) => S;
 
-export interface ActionMap {
-    [key: string]: Action;
-}
+export interface ActionMap {} // tslint:disable-line:no-empty-interface
 
-export type ActionTypesFromActionMap<A extends ActionMap> = {[T in keyof A]: A[T]['type']};
+export type ActionTypesFromActionMap<A extends ActionMap> = {[T in keyof A]: A[T] extends Action ? A[T]['type'] : never};
 
 /**
  * Abstract something something
